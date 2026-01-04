@@ -53,6 +53,7 @@ function addProduct(){
     return; // وقف تنفيذ الفنكشن
   }
 
+
   
   // select input's values as an object to describe one product   
    var product = {
@@ -70,7 +71,8 @@ function addProduct(){
    localStorage.setItem( 'allProducts' , JSON.stringify( allProducts ) );
 
 
-   document.getElementById('alert').innerHTML = ""; // مسح الرسالة
+  //  document.getElementById('alert').innerHTML = "";  // مسح الرسالة
+   document.getElementById('alert').innerHTML = " Product added successfully. Scroll down to view details ";
 
    displayAllProducts();
    clearInputs1();
@@ -85,19 +87,28 @@ function displayAllProducts(){
 
     for( var i = 0 ; i < allProducts.length ; i++){
        products = products + `
-      <tr>
-      <th scope="row">${i + 1}</th>
-      <td>${allProducts[i].name}</td>
-      <td>${allProducts[i].price}</td>
-      <td>${allProducts[i].category}</td>
-      <td>${allProducts[i].description}</td>
-      <td> <button  onclick="editProduct( ${ i } )"  type="button" class="btn" data-bs-toggle="button"><i class="fa-solid fa-pen-to-square fs-5 text-primary "></i></button> </td>
-      <td> <button  onclick="deleteProduct( ${ i } )"  type="button" class="btn" data-bs-toggle="button"><i class="fa-solid fa-trash fs-5 text-danger "></i></button> </td>
-      </tr>
+
+        <div class=" text-center col-md-6 col-sm-12 mt-2 ">
+          <div class="card">
+            <div class="card-header">
+              <p>Product id: #${i + 1}</p>
+            </div>
+           <div class="card-body">
+             <h6 class="card-title">Name: ${allProducts[i].name}</h6>
+             <p class="card-text">Price: ${allProducts[i].price}</p>
+             <p class="card-text">Category: ${allProducts[i].category}</p>
+             <p class="card-text">Description: ${allProducts[i].description}</p>
+           </div>
+           <div class="card-footer text-body-secondary">
+             <button  onclick="editProduct( ${ i } )"  type="button" class="btn border px-4" data-bs-toggle="button"> Edit <i class="fa-solid fa-pen-to-square fs-5 text-primary "></i></button>
+             <button  onclick="deleteProduct( ${ i } )"  type="button" class="btn border" data-bs-toggle="button"> Delete <i class="fa-solid fa-trash fs-5 text-danger "></i></button> 
+           </div>
+         </div>
+      </div>
     `
     };
 
-    document.getElementById('tr').innerHTML= products; // fe el innerhtml hn3rd el cartona ely b2t feha kol el <td> 
+    document.getElementById('tr').innerHTML= products; // fe el innerhtml hn3rd el cartona ely b2t feha kol el <products> 
 
 };
 
@@ -156,7 +167,7 @@ function editProduct( i ){
   ProductName.value   = allProducts[i].name;
   productPrice.value  = allProducts[i].price;
   productCat.value    = allProducts[i].category;
-  productDesc.value   = allProducts[i].describtion;
+  productDesc.value   = allProducts[i].description;
 
   document.getElementById('convertAddToEdit').innerHTML= `
   
@@ -213,15 +224,24 @@ function search(){
     if( allProducts[i].name.toLowerCase().includes(searchValue) == true  ){
 
     products = products + `
-      <tr>
-      <th scope="row">${i + 1}</th>
-      <td>${allProducts[i].name}</td>
-      <td>${allProducts[i].price}</td>
-      <td>${allProducts[i].category}</td>
-      <td>${allProducts[i].describtion}</td>
-      <td> <button  onclick="editProduct( ${ i } )"  type="button" class="btn" data-bs-toggle="button"><i class="fa-solid fa-pen-to-square fs-5 text-primary "></i></button> </td>
-      <td> <button  onclick="deleteProduct( ${ i } )"  type="button" class="btn" data-bs-toggle="button"><i class="fa-solid fa-trash fs-5 text-danger "></i></button> </td>
-      </tr>
+    
+      <div class=" text-center col-md-6 col-sm-12 mt-2 ">
+          <div class="card">
+            <div class="card-header">
+              <p>Product id: #${i + 1}</p>
+            </div>
+           <div class="card-body">
+             <h6 class="card-title">Name: ${allProducts[i].name}</h6>
+             <p class="card-text">Price: ${allProducts[i].price}</p>
+             <p class="card-text">Category: ${allProducts[i].category}</p>
+             <p class="card-text">Description: ${allProducts[i].description}</p>
+           </div>
+           <div class="card-footer text-body-secondary">
+             <button  onclick="editProduct( ${ i } )"  type="button" class="btn border px-4" data-bs-toggle="button"> Edit <i class="fa-solid fa-pen-to-square fs-5 text-primary "></i></button>
+             <button  onclick="deleteProduct( ${ i } )"  type="button" class="btn border" data-bs-toggle="button"> Delete <i class="fa-solid fa-trash fs-5 text-danger "></i></button> 
+           </div>
+         </div>
+      </div>
     `
     }
 
