@@ -21,6 +21,7 @@ var productPrice = document.getElementById('pp');
 var productCat = document.getElementById('pc');
 var productDesc = document.getElementById('pd');
 
+
 // empty array to store objects when create it 
 var allProducts = []; 
 
@@ -257,3 +258,20 @@ function logout(){
 }
 
 
+
+var darkBtn = document.querySelector('#darkBtn');
+var body = document.body;
+
+body.style.backgroundColor = 'white'; // by defualt
+
+darkBtn.addEventListener('click', function () {
+  if (body.style.backgroundColor === 'rgb(198, 201, 205)') {
+    body.style.backgroundColor = 'white';
+    document.getElementById('darkBtn').innerHTML=`<i class="fa-solid fa-moon "></i>`
+  } 
+  else {
+    body.style.backgroundColor = '#c6c9cd';
+    document.getElementById('darkBtn').innerHTML=`<i class="fa-solid fa-lightbulb text-white"> `
+
+  }
+});
